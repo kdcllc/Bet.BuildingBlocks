@@ -26,7 +26,7 @@ test_script:
   - dotnet test test/Bet.BuildingBlocks.UnitTest/Bet.BuildingBlocks.UnitTest.csproj -c Release --no-build
 
 artifacts:
-- path: .\src\Bet.BuildingBlocks\bin\Release\**\*.nupkg
+- path: .\packages\**\*.nupkg
   name: NuGet package
 
 deploy:

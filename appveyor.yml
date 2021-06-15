@@ -1,0 +1,37 @@
+version: 1.0.{build}
+branches:
+    only:
+      - master
+pull_requests:
+  do_not_increment_build_number: true
+image: Visual Studio 2019
+## temporary until 6.0.100-preview.4.21255.9 sdk is installed
+install:
+  - ps: $urlCurrent = "https://dotnetcli.blob.core.windows.net/dotnet/Sdk/6.0.100-preview.4.21255.9/dotnet-sdk-6.0.100-preview.4.21255.9-win-x64.zip"
+  - ps: $env:DOTNET_INSTALL_DIR = "$pwd\.dotnetsdk"
+  - ps: mkdir $env:DOTNET_INSTALL_DIR -Force | Out-Null
+  - ps: $tempFileCurrent = [System.IO.Path]::GetTempFileName()
+  - ps: (New-Object System.Net.WebClient).DownloadFile($urlCurrent, $tempFileCurrent)
+  - ps: Add-Type -AssemblyName System.IO.Compression.FileSystem; [System.IO.Compression.ZipFile]::ExtractToDirectory($tempFileCurrent, $env:DOTNET_INSTALL_DIR)
+  - ps: $env:Path = "$env:DOTNET_INSTALL_DIR;$env:Path"
+nuget:
+  disable_publish_on_pr: true
+
+build_script:
+  - ps: dotnet restore Bet.BuildingBlocks.sln -v quiet
+  - ps: dotnet build Bet.BuildingBlocks.sln /p:configuration=Release /p:Version=$($env:appveyor_build_version)
+
+test_script:
+  - dotnet test test/Bet.BuildingBlocks.UnitTest/Bet.BuildingBlocks.UnitTest.csproj -c Release --no-build
+
+artifacts:
+- path: .\src\Bet.BuildingBlocks\bin\Release\**\*.nupkg
+  name: NuGet package
+
+deploy:
+- provider: NuGet
+  artifact: /NuGet/
+  api_key:
+    secure: hs4f+3xdpI1ANqvOB7J9BZx+aBdbZYzHmoYymDFA7YCt5AWLJSdNyv2nkrBn1V9q
+  on:
+    branch: master

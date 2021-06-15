@@ -1,0 +1,43 @@
+<Project>
+
+	<PropertyGroup Label="Basic Settings">
+		<IsPackable>true</IsPackable>
+		<VersionPrefix>1.0.0-preview1</VersionPrefix>
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+		<SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
+		<NoWarn>$(NoWarn);CS1591;CS1574;CS1572;CS0105</NoWarn>
+	</PropertyGroup>
+
+	<PropertyGroup Label="Ownership Settings">
+		<Company>King David Consulting LLC</Company>
+		<Authors>kdcllc</Authors>
+		<Copyright>King David Consulting LLC</Copyright>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<LangVersion>preview</LangVersion>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<PropertyGroup Label="Nuget Package Settings">
+		<Description>DotNetCore Clean Architecture Building Blocks for Domain Driven Design (DDD).</Description>
+		<PackageProjectUrl>https://github.com/kdcllc/Bet.BuildingBlocks</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/kdcllc/Bet.BuildingBlocks.git</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageLicense>https://github.com/kdcllc/Bet.BuildingBlocks/blob/master/LICENSE</PackageLicense>
+		<PackageIcon>icon.png</PackageIcon>
+		<PackageTags>aspnetcore, dotnet, building blocks, domain driven design, ddd, clean architecture</PackageTags>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<PropertyGroup Label="SourceLink Settings">
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+
+		<!-- https://github.com/kdcllc/Bet.AspNetCore/issues/103 -->
+		<DebugType>Embedded</DebugType>
+		<EmbedAllSources>True</EmbedAllSources>
+	</PropertyGroup>
+</Project>

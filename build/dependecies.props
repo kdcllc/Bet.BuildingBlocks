@@ -1,0 +1,60 @@
+<Project>
+
+	<PropertyGroup>
+		<RunCodeAnalysis>true</RunCodeAnalysis>
+		<NetCoreCommon>3.1.*</NetCoreCommon>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net5.0' Or '$(TargetFramework)' == 'netstandard2.1'">
+		<NetCoreCommon>5.0.*</NetCoreCommon>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net6.0'">
+		<NetCoreCommon>6.0.0-preview.6.*</NetCoreCommon>
+	</PropertyGroup>
+
+	<ItemGroup Label="NetCore">
+		<PackageReference Update="Microsoft.Extensions.Logging.Abstractions" Version="$(NetCoreCommon)" />
+	</ItemGroup>
+
+	<ItemGroup Label="EFCore">
+		<PackageReference Update="Microsoft.Data.SqlClient" Version="2.1.0" />
+
+		<PackageReference Update="Microsoft.EntityFrameworkCore" Version="$(NetCoreCommon)" />
+		<PackageReference Update="Microsoft.EntityFrameworkCore.Design" Version="$(NetCoreCommon)"  PrivateAssets="All" />
+		<PackageReference Update="Microsoft.EntityFrameworkCore.SqlServer" Version="$(NetCoreCommon)"  />
+		<PackageReference Update="Microsoft.EntityFrameworkCore.InMemory" Version="$(NetCoreCommon)" />
+		<PackageReference Update="Microsoft.EntityFrameworkCore.Sqlite" Version="$(NetCoreCommon)" />
+		<PackageReference Update="Microsoft.EntityFrameworkCore.SqlServer" Version="$(NetCoreCommon)" />
+	</ItemGroup>
+
+	<ItemGroup Label="Shared">
+		<PackageReference Update="MediatR" Version="9.0.0" />
+	</ItemGroup>
+
+	<ItemGroup Label="SourceLink">
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+	</ItemGroup>
+
+	<ItemGroup Label="Analyzers">
+		<PackageReference Include="Bet.CodeAnalyzers" Version="1.0.10">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Bet.EditorConfig" Version="1.0.10">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+
+		<!-- C# 10 compliler for VSCode VS.NET works without it -->
+		<PackageReference Include="Microsoft.Net.Compilers.Toolset" Version="4.0.0-2.21310.25">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="../../img/icon.png" Pack="true" Visible="false" PackagePath="" />
+	</ItemGroup>
+</Project>

@@ -20,6 +20,7 @@ nuget:
 build_script:
   - ps: dotnet restore Bet.BuildingBlocks.sln -v quiet
   - ps: dotnet build Bet.BuildingBlocks.sln /p:configuration=Release /p:Version=$($env:appveyor_build_version)
+  - ps: dotnet pack Bet.BuildingBlocks.sln  --no-build -p:configuration=Release -p:Version=$($env:appveyor_build_version) -o packages
 
 test_script:
   - dotnet test test/Bet.BuildingBlocks.UnitTest/Bet.BuildingBlocks.UnitTest.csproj -c Release --no-build

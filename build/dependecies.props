@@ -10,19 +10,20 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(TargetFramework)' == 'net6.0'">
-		<NetCoreCommon>6.0.0-preview.6.*</NetCoreCommon>
+		<NetCoreCommon>6.0.0-preview.*</NetCoreCommon>
 	</PropertyGroup>
 
 	<ItemGroup Label="NetCore">
 		<PackageReference Update="Microsoft.Extensions.Logging.Abstractions" Version="$(NetCoreCommon)" />
+		<PackageReference Update="Microsoft.Extensions.Logging" Version="$(NetCoreCommon)" />
 	</ItemGroup>
 
 	<ItemGroup Label="EFCore">
 		<PackageReference Update="Microsoft.Data.SqlClient" Version="2.1.0" />
 
 		<PackageReference Update="Microsoft.EntityFrameworkCore" Version="$(NetCoreCommon)" />
-		<PackageReference Update="Microsoft.EntityFrameworkCore.Design" Version="$(NetCoreCommon)"  PrivateAssets="All" />
-		<PackageReference Update="Microsoft.EntityFrameworkCore.SqlServer" Version="$(NetCoreCommon)"  />
+		<PackageReference Update="Microsoft.EntityFrameworkCore.Design" Version="$(NetCoreCommon)" PrivateAssets="All" />
+		<PackageReference Update="Microsoft.EntityFrameworkCore.SqlServer" Version="$(NetCoreCommon)" />
 		<PackageReference Update="Microsoft.EntityFrameworkCore.InMemory" Version="$(NetCoreCommon)" />
 		<PackageReference Update="Microsoft.EntityFrameworkCore.Sqlite" Version="$(NetCoreCommon)" />
 		<PackageReference Update="Microsoft.EntityFrameworkCore.SqlServer" Version="$(NetCoreCommon)" />
@@ -30,6 +31,7 @@
 
 	<ItemGroup Label="Shared">
 		<PackageReference Update="MediatR" Version="9.0.0" />
+		<PackageReference Update="FluentValidation" Version="10.2.3" />
 	</ItemGroup>
 
 	<ItemGroup Label="SourceLink">
@@ -57,4 +59,11 @@
 	<ItemGroup>
 		<None Include="../../img/icon.png" Pack="true" Visible="false" PackagePath="" />
 	</ItemGroup>
+
+	<!-- Workaround for this bug (replace the analyzer name with the one you need to exclude (filename only, no extension) -->
+	<Target Name="RemoveLoggingAnalyzer" BeforeTargets="CoreCompile">
+		<ItemGroup>
+			<Analyzer Remove="@(Analyzer)" Condition="%(FileName) == 'Microsoft.Extensions.Logging.Generators'" />
+		</ItemGroup>
+	</Target>
 </Project>

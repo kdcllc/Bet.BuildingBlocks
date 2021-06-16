@@ -16,8 +16,6 @@ The goal of this repo is to provide with foundational libary for DotNetCore Clea
 
 The foundation for this library was taken from earlier version of [eShopOnContainers](https://github.com/dotnet-architecture/eShopOnContainers).
 
-- [`Bet.BuildingBlocks.Domain.Abstractions`](./src/Bet.BuildingBlocks.Domain.Abstractions/)
-
 ## Hire me
 
 Please send [email](mailto:kingdavidconsulting@gmail.com) if you consider to **hire me**.

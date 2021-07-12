@@ -47,7 +47,8 @@ namespace Bet.BuildingBlocks.Application.Abstractions.Behaviors
                 _logger.LogWarning("Validation errors - {CommandType} - Command: {@Command} - Errors: {@ValidationErrors}", typeName, request, failures);
 
                 throw new DomainException(
-                    $"Command Validation Errors for type {typeof(TRequest).Name}", new ValidationException("Validation exception", failures));
+                    $"Command Validation Errors for type {typeof(TRequest).Name}",
+                    new ValidationException("Validation exception", failures));
             }
 
             return next();

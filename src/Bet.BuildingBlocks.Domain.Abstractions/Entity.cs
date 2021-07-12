@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using MediatR;
 
 namespace Bet.BuildingBlocks.Domain.Abstractions
@@ -5,7 +7,7 @@ namespace Bet.BuildingBlocks.Domain.Abstractions
     public abstract class Entity
     {
         private int? _requestedHashCode;
-        private List<INotification> _domainEvents = new List<INotification>();
+        private List<INotification> _domainEvents = new ();
 
         public virtual int Id { get; set; }
 

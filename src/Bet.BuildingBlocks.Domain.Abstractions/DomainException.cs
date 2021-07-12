@@ -1,3 +1,5 @@
+using System;
+
 namespace Bet.BuildingBlocks.Domain.Abstractions
 {
     /// <summary>

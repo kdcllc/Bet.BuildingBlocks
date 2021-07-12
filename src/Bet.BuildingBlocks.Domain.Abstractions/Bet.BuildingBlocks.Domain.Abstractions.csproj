@@ -1,12 +1,12 @@
 ﻿<!-- https://docs.microsoft.com/en-us/dotnet/core/project-sdk/msbuild-props -->
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
+	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0;netstandard2.1;net5.0;net6.0</TargetFrameworks>
 	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="MediatR" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="MediatR" />
+	</ItemGroup>
 
 </Project>

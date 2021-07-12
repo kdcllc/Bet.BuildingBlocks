@@ -1,5 +1,7 @@
 #nullable disable
 
+using System.Linq;
+
 namespace System.Collections.Generic
 {
     public static class LinqSelectExtensions
@@ -51,7 +53,7 @@ namespace System.Collections.Generic
 
             public TResult Result { get; private set; }
 
-            public Exception CaughtException { get; private set; }
+            public Exception CaughtException { get; }
         }
     }
 }

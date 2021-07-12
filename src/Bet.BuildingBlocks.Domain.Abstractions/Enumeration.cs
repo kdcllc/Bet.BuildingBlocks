@@ -1,3 +1,8 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+
 namespace Bet.BuildingBlocks.Domain.Abstractions
 {
     public abstract class Enumeration : IComparable
@@ -8,9 +13,9 @@ namespace Bet.BuildingBlocks.Domain.Abstractions
             Name = name;
         }
 
-        public string Name { get; private set; }
+        public string Name { get; }
 
-        public int Id { get; private set; }
+        public int Id { get; }
 
         public static IEnumerable<T> GetAll<T>() where T : Enumeration
         {
@@ -61,7 +66,7 @@ namespace Bet.BuildingBlocks.Domain.Abstractions
             return Id.CompareTo(((Enumeration)other).Id);
         }
 
-        private static T Parse<T, K>(K value, string description, Func<T, bool> predicate) where T : Enumeration
+        private static T Parse<T, TK>(TK value, string description, Func<T, bool> predicate) where T : Enumeration
         {
             var matchingItem = GetAll<T>().FirstOrDefault(predicate);
             if (matchingItem == null)

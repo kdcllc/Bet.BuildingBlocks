@@ -2,6 +2,7 @@
 
 namespace Bet.BuildingBlocks.UnitTest.Models
 {
+#nullable disable
     public class Book
     {
         public string Title { get; set; }

@@ -1,3 +1,7 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+
 namespace Bet.BuildingBlocks.Domain.Abstractions.Interfaces
 {
     public interface IUnitOfWork : IDisposable

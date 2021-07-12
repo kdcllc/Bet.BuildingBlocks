@@ -1,6 +1,7 @@
+﻿using System;
 using System.Linq;
 
-namespace System
+namespace Bet.BuildingBlocks.Messaging.Abstractions.Extensions
 {
     public static class GenericTypeExtensions
     {

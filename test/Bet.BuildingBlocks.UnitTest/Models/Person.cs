@@ -2,6 +2,7 @@
 
 namespace Bet.BuildingBlocks.UnitTest.Models
 {
+#nullable disable
     public class Person
     {
         public int Age { get; set; }

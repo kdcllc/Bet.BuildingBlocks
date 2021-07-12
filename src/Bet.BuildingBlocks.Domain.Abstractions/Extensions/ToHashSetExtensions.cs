@@ -77,12 +77,12 @@ namespace System.Collections.Generic
 
                 if (collection is TSource[] array)
                 {
-                    return ToHashSet(array, keySelector, comparer);
+                    return ToHashSet(array, keySelector, comparer!);
                 }
 
                 if (collection is List<TSource> list)
                 {
-                    return ToHashSet(list, keySelector, comparer);
+                    return ToHashSet(list, keySelector, comparer!);
                 }
             }
 

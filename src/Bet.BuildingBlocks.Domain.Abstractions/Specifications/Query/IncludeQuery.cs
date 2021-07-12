@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+
 using Bet.BuildingBlocks.Domain.Abstractions.Specifications.Interfaces;
 
 namespace Bet.BuildingBlocks.Domain.Abstractions.Specifications.Query

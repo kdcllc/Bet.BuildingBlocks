@@ -1,3 +1,7 @@
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+
 using Bet.BuildingBlocks.Domain.Abstractions.Interfaces;
 
 namespace Bet.BuildingBlocks.Domain.Abstractions.Specifications.Interfaces

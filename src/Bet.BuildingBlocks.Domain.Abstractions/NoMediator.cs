@@ -1,3 +1,6 @@
+using System.Threading;
+using System.Threading.Tasks;
+
 using MediatR;
 
 namespace Bet.BuildingBlocks.Domain.Abstractions
@@ -16,12 +19,12 @@ namespace Bet.BuildingBlocks.Domain.Abstractions
 
         public Task<TResponse> Send<TResponse>(IRequest<TResponse> request, CancellationToken cancellationToken = default)
         {
-            return Task.FromResult<TResponse>(default);
+            return Task.FromResult<TResponse>(default!);
         }
 
         public Task<object> Send(object request, CancellationToken cancellationToken = default)
         {
-            return Task.FromResult<object>(default);
+            return Task.FromResult<object>(default!);
         }
     }
 }

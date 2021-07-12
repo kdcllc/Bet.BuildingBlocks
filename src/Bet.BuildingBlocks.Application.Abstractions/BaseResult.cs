@@ -5,7 +5,7 @@ namespace Bet.BuildingBlocks.Application.Abstractions
 {
     public abstract class BaseResult
     {
-        private readonly List<string> _errors = new List<string>();
+        private readonly List<string> _errors = new ();
 
         protected BaseResult()
         {

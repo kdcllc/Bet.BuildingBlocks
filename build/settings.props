@@ -2,9 +2,11 @@
 
 	<PropertyGroup Label="Basic Settings">
 		<IsPackable>true</IsPackable>
-		<VersionPrefix>1.0.1-preview1</VersionPrefix>
+		<VersionPrefix>1.0.2-preview1</VersionPrefix>
 		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
 		<SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
+    <LangVersion>preview</LangVersion>
+    <Nullable>enable</Nullable>
 		<NoWarn>$(NoWarn);CS1591;CS1574;CS1572;CS0105</NoWarn>
 	</PropertyGroup>
 
@@ -12,11 +14,6 @@
 		<Company>King David Consulting LLC</Company>
 		<Authors>kdcllc</Authors>
 		<Copyright>King David Consulting LLC</Copyright>
-	</PropertyGroup>
-
-	<PropertyGroup>
-		<LangVersion>preview</LangVersion>
-		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<PropertyGroup Label="Nuget Package Settings">

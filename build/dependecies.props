@@ -10,7 +10,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(TargetFramework)' == 'net6.0'">
-		<NetCoreCommon>6.0.0-preview.*</NetCoreCommon>
+		<NetCoreCommon>6.0.0-rc.1.*</NetCoreCommon>
 	</PropertyGroup>
 
 	<ItemGroup Label="NetCore">
@@ -19,8 +19,7 @@
 	</ItemGroup>
 
 	<ItemGroup Label="EFCore">
-		<PackageReference Update="Microsoft.Data.SqlClient" Version="2.1.0" />
-
+		<PackageReference Update="Microsoft.Data.SqlClient" Version="3.0.0" />
 		<PackageReference Update="Microsoft.EntityFrameworkCore" Version="$(NetCoreCommon)" />
 		<PackageReference Update="Microsoft.EntityFrameworkCore.Design" Version="$(NetCoreCommon)" PrivateAssets="All" />
 		<PackageReference Update="Microsoft.EntityFrameworkCore.SqlServer" Version="$(NetCoreCommon)" />
@@ -31,7 +30,20 @@
 
 	<ItemGroup Label="Shared">
 		<PackageReference Update="MediatR" Version="9.0.0" />
-		<PackageReference Update="FluentValidation" Version="10.2.3" />
+		<PackageReference Update="FluentValidation" Version="10.3.3" />
+	</ItemGroup>
+
+	<ItemGroup Label="Test">
+		<PackageReference Update="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+		<PackageReference Update="xunit" Version="2.4.1" />
+		<PackageReference Update="xunit.runner.visualstudio" Version="2.4.3">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Update="coverlet.collector" Version="3.1.0">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
 	</ItemGroup>
 
 	<ItemGroup Label="SourceLink">
@@ -39,17 +51,11 @@
 	</ItemGroup>
 
 	<ItemGroup Label="Analyzers">
-		<PackageReference Include="Bet.CodeAnalyzers" Version="1.0.10">
+		<PackageReference Include="Bet.CodeAnalyzers" Version="1.0.12">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Bet.EditorConfig" Version="1.0.10">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-
-		<!-- C# 10 compliler for VSCode VS.NET works without it -->
-		<PackageReference Include="Microsoft.Net.Compilers.Toolset" Version="4.0.0-2.21310.25">
+		<PackageReference Include="Bet.EditorConfig" Version="1.0.12">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
@@ -64,6 +70,12 @@
 	<Target Name="RemoveLoggingAnalyzer" BeforeTargets="CoreCompile">
 		<ItemGroup>
 			<Analyzer Remove="@(Analyzer)" Condition="%(FileName) == 'Microsoft.Extensions.Logging.Generators'" />
+		</ItemGroup>
+	</Target>
+
+	<Target Name="RemoveJsonAnalyzer" BeforeTargets="CoreCompile">
+		<ItemGroup>
+			<Analyzer Remove="@(Analyzer)" Condition="%(FileName) == 'System.Text.Json.SourceGeneration'" />
 		</ItemGroup>
 	</Target>
 </Project>

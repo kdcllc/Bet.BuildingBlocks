@@ -10,7 +10,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(TargetFramework)' == 'net6.0'">
-		<NetCoreCommon>6.0.0-rc.1.*</NetCoreCommon>
+		<NetCoreCommon>6.0.*</NetCoreCommon>
 	</PropertyGroup>
 
 	<ItemGroup Label="NetCore">
@@ -19,7 +19,7 @@
 	</ItemGroup>
 
 	<ItemGroup Label="EFCore">
-		<PackageReference Update="Microsoft.Data.SqlClient" Version="3.0.0" />
+		<PackageReference Update="Microsoft.Data.SqlClient" Version="3.0.1" />
 		<PackageReference Update="Microsoft.EntityFrameworkCore" Version="$(NetCoreCommon)" />
 		<PackageReference Update="Microsoft.EntityFrameworkCore.Design" Version="$(NetCoreCommon)" PrivateAssets="All" />
 		<PackageReference Update="Microsoft.EntityFrameworkCore.SqlServer" Version="$(NetCoreCommon)" />
@@ -30,11 +30,11 @@
 
 	<ItemGroup Label="Shared">
 		<PackageReference Update="MediatR" Version="9.0.0" />
-		<PackageReference Update="FluentValidation" Version="10.3.3" />
+		<PackageReference Update="FluentValidation" Version="10.3.4" />
 	</ItemGroup>
 
 	<ItemGroup Label="Test">
-		<PackageReference Update="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+		<PackageReference Update="Microsoft.NET.Test.Sdk" Version="17.0.0" />
 		<PackageReference Update="xunit" Version="2.4.1" />
 		<PackageReference Update="xunit.runner.visualstudio" Version="2.4.3">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

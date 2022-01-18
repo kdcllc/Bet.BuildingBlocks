@@ -1,99 +1,99 @@
-using System.Collections.Generic;
-
 using MediatR;
 
-namespace Bet.BuildingBlocks.Domain.Abstractions
+namespace Bet.BuildingBlocks.Domain.Abstractions;
+
+/// <summary>
+/// This is DDD entity to be used inside of EFCore Context.
+/// </summary>
+public abstract class Entity
 {
-    public abstract class Entity
+    private int? _requestedHashCode;
+    private List<INotification> _domainEvents = new();
+
+    public virtual int Id { get; set; }
+
+    public IReadOnlyCollection<INotification>? DomainEvents => _domainEvents?.AsReadOnly();
+
+    public static bool operator ==(Entity left, Entity right)
     {
-        private int? _requestedHashCode;
-        private List<INotification> _domainEvents = new ();
-
-        public virtual int Id { get; set; }
-
-        public IReadOnlyCollection<INotification>? DomainEvents => _domainEvents?.AsReadOnly();
-
-        public static bool operator ==(Entity left, Entity right)
+        if (Equals(left, null))
         {
-            if (Equals(left, null))
-            {
-                return Equals(right, null) ? true : false;
-            }
-            else
-            {
-                return left.Equals(right);
-            }
+            return Equals(right, null) ? true : false;
+        }
+        else
+        {
+            return left.Equals(right);
+        }
+    }
+
+    public static bool operator !=(Entity left, Entity right) => !(left == right);
+
+    public void AddDomainEvent(INotification eventItem)
+    {
+        _domainEvents ??= new List<INotification>();
+        _domainEvents.Add(eventItem);
+    }
+
+    public void RemoveDomainEvent(INotification eventItem)
+    {
+        _domainEvents?.Remove(eventItem);
+    }
+
+    public void ClearDomainEvents()
+    {
+        _domainEvents?.Clear();
+    }
+
+    public bool IsTransient()
+    {
+        return Id == default;
+    }
+
+    public override bool Equals(object obj)
+    {
+        if (obj == null
+            || !(obj is Entity))
+        {
+            return false;
         }
 
-        public static bool operator !=(Entity left, Entity right) => !(left == right);
-
-        public void AddDomainEvent(INotification eventItem)
+        if (ReferenceEquals(this, obj))
         {
-            _domainEvents ??= new List<INotification>();
-            _domainEvents.Add(eventItem);
+            return true;
         }
 
-        public void RemoveDomainEvent(INotification eventItem)
+        if (GetType() != obj.GetType())
         {
-            _domainEvents?.Remove(eventItem);
+            return false;
         }
 
-        public void ClearDomainEvents()
+        var item = (Entity)obj;
+
+        if (item.IsTransient()
+            || IsTransient())
         {
-            _domainEvents?.Clear();
+            return false;
         }
-
-        public bool IsTransient()
+        else
         {
-            return Id == default;
+            return item.Id == Id;
         }
+    }
 
-        public override bool Equals(object obj)
+    public override int GetHashCode()
+    {
+        if (!IsTransient())
         {
-            if (obj == null
-                || !(obj is Entity))
+            if (!_requestedHashCode.HasValue)
             {
-                return false;
+                _requestedHashCode = Id.GetHashCode() ^ 31; // XOR for random distribution (http://blogs.msdn.com/b/ericlippert/archive/2011/02/28/guidelines-and-rules-for-gethashcode.aspx)
             }
 
-            if (ReferenceEquals(this, obj))
-            {
-                return true;
-            }
-
-            if (GetType() != obj.GetType())
-            {
-                return false;
-            }
-
-            var item = (Entity)obj;
-
-            if (item.IsTransient()
-                || IsTransient())
-            {
-                return false;
-            }
-            else
-            {
-                return item.Id == Id;
-            }
+            return _requestedHashCode.Value;
         }
-
-        public override int GetHashCode()
+        else
         {
-            if (!IsTransient())
-            {
-                if (!_requestedHashCode.HasValue)
-                {
-                    _requestedHashCode = Id.GetHashCode() ^ 31; // XOR for random distribution (http://blogs.msdn.com/b/ericlippert/archive/2011/02/28/guidelines-and-rules-for-gethashcode.aspx)
-                }
-
-                return _requestedHashCode.Value;
-            }
-            else
-            {
-                return base.GetHashCode();
-            }
+            return base.GetHashCode();
         }
     }
 }

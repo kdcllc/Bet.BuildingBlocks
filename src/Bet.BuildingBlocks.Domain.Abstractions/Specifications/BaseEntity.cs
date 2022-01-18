@@ -1,7 +1,6 @@
-namespace Bet.BuildingBlocks.Domain.Abstractions.Specifications
+namespace Bet.BuildingBlocks.Domain.Abstractions.Specifications;
+
+public abstract class BaseEntity
 {
-    public abstract class BaseEntity
-    {
-        // public virtual int Id { get; protected set; }
-    }
+    // public virtual int Id { get; protected set; }
 }

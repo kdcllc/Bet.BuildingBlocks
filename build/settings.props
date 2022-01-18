@@ -2,10 +2,11 @@
 
 	<PropertyGroup Label="Basic Settings">
 		<IsPackable>true</IsPackable>
-		<VersionPrefix>1.0.4-preview1</VersionPrefix>
+		<VersionPrefix>2.0.0-preview1</VersionPrefix>
 		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
 		<SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
 		<LangVersion>preview</LangVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<NoWarn>$(NoWarn);CS1591;CS1574;CS1572;CS0105</NoWarn>
 	</PropertyGroup>

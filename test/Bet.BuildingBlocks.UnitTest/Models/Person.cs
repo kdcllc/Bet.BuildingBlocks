@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Bet.BuildingBlocks.UnitTest.Models
+﻿namespace Bet.BuildingBlocks.UnitTest.Models
 {
 #nullable disable
     public class Person

@@ -1,12 +1,19 @@
-using System.Threading;
-using System.Threading.Tasks;
-
 using MediatR;
 
 namespace Bet.BuildingBlocks.Domain.Abstractions
 {
     public class NoMediator : IMediator
     {
+        public IAsyncEnumerable<TResponse> CreateStream<TResponse>(IStreamRequest<TResponse> request, CancellationToken cancellationToken = default)
+        {
+            return default!;
+        }
+
+        public IAsyncEnumerable<object?> CreateStream(object request, CancellationToken cancellationToken = default)
+        {
+            return default!;
+        }
+
         public Task Publish<TNotification>(TNotification notification, CancellationToken cancellationToken = default) where TNotification : INotification
         {
             return Task.CompletedTask;

@@ -1,19 +1,16 @@
-using System.Collections.Generic;
-
 using Bet.BuildingBlocks.Domain.Abstractions.Specifications.Query;
 
-namespace Bet.BuildingBlocks.Domain.Abstractions.Specifications.Interfaces
+namespace Bet.BuildingBlocks.Domain.Abstractions.Specifications.Interfaces;
+
+public interface IIncludeQuery
 {
-    public interface IIncludeQuery
-    {
-        Dictionary<IIncludeQuery, string> PathMap { get; }
+    Dictionary<IIncludeQuery, string> PathMap { get; }
 
-        IncludeVisitor Visitor { get; }
+    IncludeVisitor Visitor { get; }
 
-        HashSet<string> Paths { get; }
-    }
+    HashSet<string> Paths { get; }
+}
 
-    public interface IIncludeQuery<TEntity, out TPreviousProperty> : IIncludeQuery
-    {
-    }
+public interface IIncludeQuery<TEntity, out TPreviousProperty> : IIncludeQuery
+{
 }

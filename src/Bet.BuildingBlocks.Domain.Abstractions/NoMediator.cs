@@ -33,5 +33,10 @@ namespace Bet.BuildingBlocks.Domain.Abstractions
         {
             return Task.FromResult<object>(default!);
         }
+
+        public Task Send<TRequest>(TRequest request, CancellationToken cancellationToken = default) where TRequest : IRequest
+        {
+            return Task.FromResult<TRequest>(default!);
+        }
     }
 }

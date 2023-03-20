@@ -57,17 +57,4 @@
 	<ItemGroup>
 		<None Include="../../img/icon.png" Pack="true" Visible="false" PackagePath="" />
 	</ItemGroup>
-
-	<!-- Workaround for this bug (replace the analyzer name with the one you need to exclude (filename only, no extension) -->
-	<Target Name="RemoveLoggingAnalyzer" BeforeTargets="CoreCompile">
-		<ItemGroup>
-			<Analyzer Remove="@(Analyzer)" Condition="%(FileName) == 'Microsoft.Extensions.Logging.Generators'" />
-		</ItemGroup>
-	</Target>
-
-	<Target Name="RemoveJsonAnalyzer" BeforeTargets="CoreCompile">
-		<ItemGroup>
-			<Analyzer Remove="@(Analyzer)" Condition="%(FileName) == 'System.Text.Json.SourceGeneration'" />
-		</ItemGroup>
-	</Target>
 </Project>

@@ -12,7 +12,7 @@ _Note: Pre-release packages are distributed via [feedz.io](https://f.feedz.io/kd
 
 ## Summary
 
-The goal of this repo is to provide with foundational libary for DotNetCore Clean Architecture Building Blocks for building Domain Driven Designed applications.
+The goal of this repo is to provide with foundational library for DotNetCore Clean Architecture Building Blocks for building Domain Driven Designed applications.
 
 The foundation for this library was taken from earlier version of [eShopOnContainers](https://github.com/dotnet-architecture/eShopOnContainers).
 

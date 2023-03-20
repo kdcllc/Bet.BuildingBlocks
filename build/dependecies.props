@@ -2,15 +2,7 @@
 
 	<PropertyGroup>
 		<RunCodeAnalysis>true</RunCodeAnalysis>
-		<NetCoreCommon>3.1.*</NetCoreCommon>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(TargetFramework)' == 'net5.0' Or '$(TargetFramework)' == 'netstandard2.1'">
-		<NetCoreCommon>5.0.*</NetCoreCommon>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(TargetFramework)' == 'net6.0'">
-		<NetCoreCommon>6.0.*</NetCoreCommon>
+		<NetCoreCommon>7.0.*</NetCoreCommon>
 	</PropertyGroup>
 
 	<ItemGroup Label="NetCore">
@@ -19,7 +11,7 @@
 	</ItemGroup>
 
 	<ItemGroup Label="EFCore">
-		<PackageReference Update="Microsoft.Data.SqlClient" Version="3.0.1" />
+		<PackageReference Update="Microsoft.Data.SqlClient" Version="5.0.*" />
 		<PackageReference Update="Microsoft.EntityFrameworkCore" Version="$(NetCoreCommon)" />
 		<PackageReference Update="Microsoft.EntityFrameworkCore.Design" Version="$(NetCoreCommon)" PrivateAssets="All" />
 		<PackageReference Update="Microsoft.EntityFrameworkCore.SqlServer" Version="$(NetCoreCommon)" />
@@ -29,18 +21,18 @@
 	</ItemGroup>
 
 	<ItemGroup Label="Shared">
-		<PackageReference Update="MediatR" Version="10.0.1" />
-		<PackageReference Update="FluentValidation" Version="10.3.6" />
+		<PackageReference Update="MediatR" Version="12.0.*" />
+		<PackageReference Update="FluentValidation" Version="11.5.*" />
 	</ItemGroup>
 
 	<ItemGroup Label="Test">
-		<PackageReference Update="Microsoft.NET.Test.Sdk" Version="17.0.0" />
-		<PackageReference Update="xunit" Version="2.4.1" />
-		<PackageReference Update="xunit.runner.visualstudio" Version="2.4.3">
+		<PackageReference Update="Microsoft.NET.Test.Sdk" Version="17.5.*" />
+		<PackageReference Update="xunit" Version="2.4.*" />
+		<PackageReference Update="xunit.runner.visualstudio" Version="2.4.*">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>
-		<PackageReference Update="coverlet.collector" Version="3.1.0">
+		<PackageReference Update="coverlet.collector" Version="3.2.*">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>
@@ -65,17 +57,4 @@
 	<ItemGroup>
 		<None Include="../../img/icon.png" Pack="true" Visible="false" PackagePath="" />
 	</ItemGroup>
-
-	<!-- Workaround for this bug (replace the analyzer name with the one you need to exclude (filename only, no extension) -->
-	<Target Name="RemoveLoggingAnalyzer" BeforeTargets="CoreCompile">
-		<ItemGroup>
-			<Analyzer Remove="@(Analyzer)" Condition="%(FileName) == 'Microsoft.Extensions.Logging.Generators'" />
-		</ItemGroup>
-	</Target>
-
-	<Target Name="RemoveJsonAnalyzer" BeforeTargets="CoreCompile">
-		<ItemGroup>
-			<Analyzer Remove="@(Analyzer)" Condition="%(FileName) == 'System.Text.Json.SourceGeneration'" />
-		</ItemGroup>
-	</Target>
 </Project>
